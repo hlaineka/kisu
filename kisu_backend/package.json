@@ -1,7 +1,40 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
     "mongoose": "^5.12.14",
     "mongoose-unique-validator": "^2.0.3",
     "validator": "^13.6.0"
-  }
+  },
+  "name": "kisu_backend",
+  "version": "1.0.0",
+  "description": "Kisu vapaaehtoisten nettipalvelu",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest --verbose",
+    "dev": "nodemon --inspect index.js",
+    "start": "node index.js",
+    "build:ui": "rm -rf build && cd ../kisu_frontend && npm run build --prod && cp -r build ../kisu_backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hlaineka/kisu.git"
+  },
+  "author": "hlaineka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hlaineka/kisu/issues"
+  },
+  "homepage": "https://github.com/hlaineka/kisu#readme"
 }

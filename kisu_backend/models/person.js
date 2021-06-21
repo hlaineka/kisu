@@ -1,5 +1,3 @@
-const { ObjectId } = require('bson')
-const { hkdf } = require('crypto')
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const validator = require('validator')
@@ -15,7 +13,7 @@ const personSchema = new mongoose.Schema({
     type: String,
     require: true,
     unique: true,
-    validate: [isEmail, 'tarkista sähköpostiosoite']
+    validate: [validator.isEmail, 'tarkista sähköpostiosoite']
   },
   puhelinnumero: String,
   osoite: {
@@ -31,11 +29,8 @@ const personSchema = new mongoose.Schema({
       type: String
     }
   },
-  ensikotivastaava: {
-    type: ObjectId,
-    require: true
-  },
-  kissat: [{type: ObjectId}],
+  ensikotivastaava: ObjectId,
+  kissat: [{ type: ObjectId }],
   aloittanut: Date,
   aktiivinen: Boolean,
   lukenutOhjeet: Boolean,
@@ -54,12 +49,11 @@ const personSchema = new mongoose.Schema({
   ekSopimus: Buffer,
   facebook: Boolean,
   ensikotisPosti: Boolean,
-  tuettu: String,
   rooli: {
     type: String,
-    enum: ["hallitus", "web-tiimi", "sirutusvastaava", "rahastonhoitaja", "sisäänottaja", "ensikotivastaava", "ensikoti"]
+    enum: ['hallitus', 'web-tiimi', 'sirutusvastaava', 'rahastonhoitaja', 'sisäänottaja', 'ensikotivastaava', 'ensikoti']
   },
-  ensikodit: [{ObjectId}]
+  ensikodit: [{ ObjectId }]
 })
 
 personSchema.plugin(uniqueValidator)
@@ -72,4 +66,4 @@ personSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Person', blogSchema)
+module.exports = mongoose.model('Person', personSchema)

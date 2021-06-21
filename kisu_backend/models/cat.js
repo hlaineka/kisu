@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
 const uniqueValidator = require('mongoose-unique-validator')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-const blogSchema = new mongoose.Schema({
+const catSchema = new mongoose.Schema({
   ensikoti: {
     type: String,
     require: true
@@ -27,17 +28,17 @@ const blogSchema = new mongoose.Schema({
   },
   sukupuoli: {
     type: String,
-    enum: ["naaras", "uros"]
+    enum: ['naaras', 'uros']
   },
   tausta: String,
   talteenottaja: String,
   talteenottopaikka: String,
   talteenottoaika: Date,
   kuntoTullessa: String,
-  ell: [{type: ObjectId}],
-  rokotukset: [{aika: Date, rokote: String}],
+  ell: [{ type: ObjectId }],
+  rokotukset: [{ aika: Date, rokote: String }],
   tartuntatauti: String,
-  loishaadot: [{aika: Date, valmiste: String}],
+  loishaadot: [{ aika: Date, valmiste: String }],
   terveys: String,
   siru: {
     aika: Date,
@@ -49,7 +50,7 @@ const blogSchema = new mongoose.Schema({
   ilmoitus: Boolean,
   ilmoitusViivastyy: String,
   ilmoitusteksti: String,
-  kuvat: [{type: Buffer}],
+  kuvat: [{ type: Buffer }],
   lopetus: Boolean,
   menetynyt: Boolean,
   kuolemanSyy: String,
@@ -75,7 +76,7 @@ const blogSchema = new mongoose.Schema({
       type: String,
       require: true,
       unique: true,
-      validate: [isEmail, 'tarkista sähköpostiosoite']
+      validate: [validator.isEmail, 'tarkista sähköpostiosoite']
     },
     puhelinnumero: String,
     luovutusmaksu: Number,
@@ -93,4 +94,4 @@ catSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Cat', blogSchema)
+module.exports = mongoose.model('Cat', catSchema)

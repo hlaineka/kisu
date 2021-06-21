@@ -1,0 +1,11 @@
+POST http://localhost:3004/api/people/ HTTP/1.1
+content-type: application/json
+
+{
+    "nimi": "Tiina Testihenkilö",
+    "email": "helvi.toivola@karkku.fi",
+    "katu": "Peruskatu 12",
+    "postinumero": 12345,
+    "kunta": "Testilä"
+}
+

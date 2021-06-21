@@ -1,2 +1,3 @@
 kisu_backend/node_modules/
 kisu_frontend/node_modules/
+kisu_backend/.env

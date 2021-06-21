@@ -7,8 +7,8 @@ catsRouter.get('/', (request, response) => {
   })
 })
 
-CatsRouter.get('/:id', (request, response, next) => {
-  cat.findById(request.params.id)
+catsRouter.get('/:id', (request, response, next) => {
+  Cat.findById(request.params.id)
     .then(cat => {
       if (cat) {
         response.json(cat.toJSON())
